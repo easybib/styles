@@ -75,8 +75,8 @@
         <text variable="title" font-style="italic" suffix=", "/>
         <text variable="volume" suffix=" "/>
         <text variable="container-title" font-variant="small-caps" suffix=" "/>
-        <text variable="page"/>
-        <text variable="locator" prefix=", "/>
+        <text variable="locator"/>
+        <text variable="page" prefix=", "/>
         <date variable="issued" prefix=" (" suffix=")">
           <date-part name="year"/>
         </date>
@@ -87,9 +87,9 @@
         <group delimiter=" ">
           <text variable="volume"/>
           <text variable="container-title"/>
-          <text variable="page"/>
+          <text variable="locator"/>
         </group>
-        <text variable="locator" prefix=", "/>
+        <text variable="page" prefix=", "/>
         <group prefix=" (" suffix=")" delimiter=" ">
           <text variable="authority"/>
           <date variable="issued">
@@ -111,7 +111,7 @@
           <date-part name="day" suffix=", "/>
           <date-part name="year"/>
         </date>
-        <text variable="page" prefix=", at "/>
+        <text variable="locator" prefix=", at "/>
       </else-if>
       <else-if type="article-magazine">
         <names variable="author" suffix=", ">
@@ -155,15 +155,15 @@
         <text variable="title" suffix=", " font-style="italic"/>
         <text variable="volume" suffix=" "/>
         <text macro="container" suffix=" "/>
-        <text variable="page"/>
-        <text variable="locator" prefix=", "/>
+        <text variable="locator"/>
+        <text variable="page" prefix=", "/>
       </else-if>
       <else>
         <text variable="volume" suffix=" "/>
         <text variable="title" font-variant="small-caps"/>
         <text macro="container" prefix=" "/>
-        <text variable="page" prefix=" "/>
         <text variable="locator" prefix=" "/>
+        <text variable="page" prefix=" "/>
       </else>
     </choose>
   </macro>
