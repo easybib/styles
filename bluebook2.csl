@@ -20,10 +20,9 @@
     <category citation-format="note"/>
     <category field="law"/>
     <summary>Bluebook citation formatting for citations in footnotes.</summary>
-    <updated>2012-09-27T22:06:38+00:00</updated>
+    <updated>2017-07-27T20:55:22+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
-  <!-- sets up basics of dealing with authors -->
   <macro name="source-short">
     <choose>
       <if type="legal_case">
@@ -50,7 +49,6 @@
       </else>
     </choose>
   </macro>
-  <!-- link to online content, called in YYYYY -->
   <macro name="access">
     <choose>
       <if variable="URL">
@@ -152,11 +150,19 @@
         </date>
       </else-if>
       <else-if type="chapter paper-conference" match="any">
-        <text variable="title" suffix=", " font-style="italic"/>
+        <names variable="author" suffix=", "/>
+        <text variable="title" text-case="title" font-style="italic" suffix=", "/>
         <text variable="volume" suffix=" "/>
         <text macro="container" suffix=" "/>
         <text variable="locator"/>
-        <text variable="page" prefix=", "/>
+        <text variable="page" prefix=", " suffix=" "/>
+        <names variable="container-author" prefix="(" suffix=").">
+          <substitute>
+            <names variable="editor" prefix="(" suffix=").">
+              <name delimiter=" &amp; " suffix=" ed." sort-separator=","/>
+            </names>
+          </substitute>
+        </names>
       </else-if>
       <else>
         <text variable="volume" suffix=" "/>
@@ -167,14 +173,12 @@
       </else>
     </choose>
   </macro>
-  <!-- sets up citing to specific page numbers for id and supra cites -->
   <macro name="at_page">
     <group delimiter=" ">
       <text value="at"/>
       <text variable="locator"/>
     </group>
   </macro>
-  <!-- sets up the "in" in front of book sections, etc. -->
   <macro name="container">
     <choose>
       <if type="chapter paper-conference" match="any">
@@ -201,11 +205,9 @@
           <group delimiter=" ">
             <text value="id." text-case="capitalize-first" font-style="italic"/>
             <text macro="at_page"/>
-            <!-- period will not show up - this is for find-and-replace later. -->
           </group>
         </if>
         <else-if position="subsequent" type="legal_case" match="any">
-          <!--CSL does not currently support reference to number of repeats, so cannot follow proper Bluebook repeat rule; choice is either short form, or long form.-->
           <group delimiter=" ">
             <text macro="source-short"/>
             <text variable="locator" prefix="at "/>
